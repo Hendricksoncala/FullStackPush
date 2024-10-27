@@ -9,10 +9,13 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token'); // Recupera el token del localStorage
+
       const response = await fetch('http://localhost:5000/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Incluye el token en la cabecera
         },
         body: JSON.stringify({ username, password }),
       });
