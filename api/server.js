@@ -1,12 +1,20 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors'); // Importa el middleware CORS
 const userRoutes = require('./routes/userRoutes');
 const noteRoutes = require('./routes/noteRoutes');
-const { protect } = require('./middleware/authMiddleware'); // Importa el middleware
+const { protect } = require('./middleware/authMiddleware'); // Importa el middleware de autenticación
 
 const app = express();
 app.use(express.json());
+
+// Configuración de CORS
+app.use(cors({
+  origin: 'http://localhost:5174', // Cambia esto al origen de tu frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+  credentials: true // Permite cookies y encabezados con credenciales si es necesario
+}));
 
 // Conexión a la base de datos
 mongoose.connect(process.env.MONGO_URI, {
@@ -20,7 +28,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // Rutas
 app.use('/users', userRoutes); 
 
-// Rutas protegidas con el middleware
+// Rutas protegidas con el middleware de autenticación
 app.use('/notes', protect, noteRoutes); 
 
 // Inicializar servidor
