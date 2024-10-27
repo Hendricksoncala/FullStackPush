@@ -1,12 +1,23 @@
 const express = require('express');
-const { createNote, getNotes } = require('../controllers/noteController');
-const { protect } = require('../middleware/authMiddleware');
 const router = express.Router();
+const noteController = require('../controllers/noteController'); // Importa todo el controlador
+const { protect } = require('../middleware/authMiddleware');
 
-// Crear nota (ruta protegida)
-router.post('/', protect, createNote);
+// Crear una nueva nota
+router.post('/', protect, noteController.createNote);
 
-// Obtener todas las notas del usuario autenticado (ruta protegida)
-router.get('/', protect, getNotes);
+// Obtener todas las notas de un usuario
+router.get('/', protect, noteController.getNotes);
+
+// Obtener una nota por ID
+router.get('/:id', protect, noteController.getNoteById);
+
+// Actualizar una nota por ID
+router.put('/:id', protect, noteController.updateNote);
+
+// Eliminar una nota por ID
+router.delete('/:id', protect, noteController.deleteNote);
+
+module.exports = router;
 
 module.exports = router;
