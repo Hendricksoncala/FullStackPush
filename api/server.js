@@ -31,6 +31,9 @@ app.use('/users', userRoutes);
 // Rutas protegidas con el middleware de autenticación
 app.use('/notes', protect, noteRoutes); 
 
+// Rutas protegidas con el middleware de autenticación
+app.use('/notes', protect, noteRoutes); 
+
 // Inicializar servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`), (err) => {

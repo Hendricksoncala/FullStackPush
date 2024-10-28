@@ -24,7 +24,7 @@ function Login() {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        alert('Inicio de sesión exitoso');
+        navigate('/notes'); // Redirige a la página de notas
       } else {
         setError(data.message || 'Error en el inicio de sesión');
       }
