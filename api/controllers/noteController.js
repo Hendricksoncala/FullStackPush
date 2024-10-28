@@ -28,11 +28,13 @@ exports.getNotes = async (req, res) => {
 // Obtener una nota por ID
 exports.getNoteById = async (req, res) => {
   try {
+    console.log("req.user:", req.user); // Verificar que req.user existe
+    console.log("req.params.id:", req.params.id); // Verificar el id de la nota
+
     const nota = await Note.findById(req.params.id);
     if (!nota) {
       return res.status(404).json({ message: 'Nota no encontrada' });
     }
-    // Verificar si la nota pertenece al usuario autenticado
     if (nota.usuario.toString() !== req.user.id) {
       return res.status(403).json({ message: 'No tienes permiso para acceder a esta nota' });
     }

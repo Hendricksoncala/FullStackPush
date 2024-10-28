@@ -4,6 +4,7 @@ import Login from './Login';
 import Register from './Register';
 import NotesPage from './NotesPage';
 import CreateNote from './CreateNote'; // Importar el componente CreateNote
+import NoteDetail from './NoteDetail.jsx';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/notes" element={<NotesPage />} />
+
+          <Route path="/notes/:id" element={<NoteDetail />} />
+
           <Route path="/create-note" element={<CreateNote />} /> {/* Nueva ruta */}
         </Routes>
       </div>

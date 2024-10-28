@@ -1,6 +1,7 @@
+// NotesPage.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './NotesPage.css'; // Importa el archivo CSS
+import './NotesPage.css';
 
 function NotesPage() {
   const navigate = useNavigate();
@@ -11,7 +12,6 @@ function NotesPage() {
       try {
         const token = localStorage.getItem('token');
         if (!token) {
-          // Si no hay token, redirige al login
           navigate('/login');
           return;
         }
@@ -27,20 +27,17 @@ function NotesPage() {
           setNotes(data);
         } else {
           console.error('Error al obtener las notas');
-          // Manejar el error, por ejemplo, mostrar un mensaje al usuario
         }
       } catch (error) {
         console.error('Error en la solicitud:', error);
-        // Manejar el error, por ejemplo, mostrar un mensaje al usuario
       }
     };
 
     fetchNotes();
-  }, [navigate]); // El efecto se ejecuta solo cuando `navigate` cambia
+  }, [navigate]);
 
   const handleCreateNote = () => {
-    // Lógica para navegar a la página de creación de notas
-    navigate('/create-note'); // Ajusta la ruta según tu configuración
+    navigate('/create-note');
   };
 
   return (
@@ -48,10 +45,14 @@ function NotesPage() {
       <h1>Notes</h1>
       <ul>
         {notes.map((note) => (
-        <div key={note._id} className="note-card">
-          <h3>{note.title}</h3>
-          <p>{note.content}</p>
-        </div>
+          <div
+            key={note._id}
+            className="note-card"
+            onClick={() => navigate(`/notes/${note._id}`)} // Navega a la ruta de detalle de la nota
+          >
+            <h3>{note.title}</h3>
+            {/* <p>{note.content}</p> */}
+          </div>
         ))}
       </ul>
       <button className="create-note-button" onClick={handleCreateNote}>

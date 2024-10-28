@@ -1,6 +1,6 @@
-// CreateNote.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './CreateNote.css';
 
 function CreateNote() {
   const [title, setTitle] = useState('');
@@ -9,19 +9,19 @@ function CreateNote() {
 
   const handleSave = async () => {
     try {
-      const token = localStorage.getItem('token'); // Asegúrate de tener el token de autenticación
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:5000/notes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // Enviar token de autorización
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ title, content }),
       });
 
       if (response.ok) {
         alert('Nota creada exitosamente');
-        navigate('/notes'); // Redirigir a la página de notas
+        navigate('/notes');
       } else {
         alert('Error al crear la nota');
       }
@@ -32,29 +32,26 @@ function CreateNote() {
   };
 
   return (
-    <div>
-      <h2>Crear Nota</h2>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <label>
-          Título:
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Contenido:
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-        </label>
-        <br />
-        <button onClick={() => navigate('/notes')}>Salir</button>
-        <button onClick={handleSave}>Guardar</button>
-      </form>
+    <div className="create-note-page">
+      <div className="nav-buttons">
+        <button onClick={() => navigate('/notes')}>←</button>
+        <button>👁️</button>
+        <button>📷</button>
+      </div>
+      <input
+        className="title-input"
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Title"
+      />
+      <textarea
+        className="content-textarea"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="Type something..."
+      />
+      <button onClick={handleSave} className="save-button">✔️</button>
     </div>
   );
 }

@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     font-size: calc(10px + 2vmin);
     padding: 20px;
   }
@@ -40,7 +39,8 @@
     background-color: #4CAF50; /* Fondo verde */
     color: white;
     padding: 15px;
-    width: 200px; /* Ancho fijo para que sean cuadros */
+    width: 90vw; /* Ancho fijo para que sean cuadros */
+    margin:25px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
