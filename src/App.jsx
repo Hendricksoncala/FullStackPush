@@ -5,35 +5,22 @@ import Register from './register/Register';
 import NotesPage from './NotesPage';
 import CreateNote from './CreateNote'; // Importar el componente CreateNote
 import EditNote from './EditNote'; 
+import Start from './Start'
 
 function App() {
   return (
     <BrowserRouter>
       <div>
         <nav>
-          <ul>
-            <li>
-              <Link to="/login">Iniciar Sesión</Link>
-            </li>
-            <li>
-              <Link to="/register">Registrarse</Link>
-            </li>
-            <li>
-              <Link to="/notes">Mis Notas</Link>
-            </li>
-            <li>
-              <Link to="/create-note">Crear Nota</Link> {/* Link para crear una nota */}
-            </li>
-          </ul>
+
         </nav>
 
         <Routes>
+          <Route path="/" element={<Start />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/notes" element={<NotesPage />} />
-
           <Route path="/notes/:id" element={<EditNote />} /> 
-
           <Route path="/create-note" element={<CreateNote />} /> 
         </Routes>
       </div>

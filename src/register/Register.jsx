@@ -38,6 +38,7 @@ function Register() {
 
   return (
     <div className="container"> {/* Agrega un contenedor */}
+    <button onClick={() => navigate('/')} className="back-button">Volver</button>
       <h2>Registrarse</h2>
       <form onSubmit={handleSubmit}>
         <label>

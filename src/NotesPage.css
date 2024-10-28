@@ -1,6 +1,9 @@
+* {
+  font-family: 'Nunito', sans-serif; 
+}
 /* Estilos generales de la página */
 .notes-page {
-    background-color: #282c34;
+    background-color: #1e1e1e;
     color: white;
     min-height: 100vh;
     min-width: 100vw;
@@ -58,5 +61,90 @@
   .note-card p {
     margin-top: 8px;
     font-size: 0.9em;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d1d1d1;
+    margin: 0;
+  }
+
+  .search-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #d1d1d1;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    text-align: center;
+    color: #d1d1d1;
+  }
+  
+  .empty-image {
+    max-width: 200px;
+    margin-bottom: 16px;
+  }
+  
+  .create-note-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  
+  .search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
   }
   

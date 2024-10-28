@@ -44,6 +44,7 @@ function Login() {
 
   return (
     <div className="container">
+      <button onClick={() => navigate('/')} className="back-button">Volver</button>
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleLogin}>
         <label>
