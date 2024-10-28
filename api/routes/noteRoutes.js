@@ -20,4 +20,3 @@ router.delete('/:id', protect, noteController.deleteNote);
 
 module.exports = router;
 
-module.exports = router;

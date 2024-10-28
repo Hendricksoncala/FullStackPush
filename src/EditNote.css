@@ -1,0 +1,65 @@
+/* Estilos generales para la página */
+.create-note-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background-color: #1e1e1e;
+    height: 100vh;
+    width: 100vw;
+    color: #d1d1d1;
+  }
+  
+  /* Botones de navegación */
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    padding: 8px;
+  }
+  
+  .nav-buttons button {
+    background: none;
+    border: none;
+    color: #d1d1d1;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para el título */
+  .title-input {
+    font-size: 60px;
+    font-weight: bold;
+    color: #d1d1d1;
+    background: none;
+    border: none;
+    width: 100vw;
+    margin: 16px 0;
+    outline: none;
+  }
+  
+  /* Estilos para el área de contenido */
+  .content-textarea {
+    width: 100%;
+    height: 60vh;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #d1d1d1;
+    resize: none;
+    outline: none;
+    padding: 8px 0;
+  }
+  
+  /* Estilo para el botón de guardar */
+  .save-button {
+    background-color: #333;
+    color: #d1d1d1;
+    font-size: 20px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 16px;
+  }
+  
