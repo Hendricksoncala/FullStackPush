@@ -1,21 +1,23 @@
+/* Estilos generales de la página */
 .notes-page {
-    /* Estilos generales de la página */
-    background-color: #282c34; /* Color de fondo oscuro */
-    color: white; /* Color de texto blanco */
-    min-height: 100vh; /* Altura mínima de la ventana */
+    background-color: #282c34;
+    color: white;
+    min-height: 100vh;
+    min-width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
+    padding: 20px;
   }
   
+  /* Botón de crear nota */
   .create-note-button {
-    /* Estilos del botón */
-    background-color: #007bff; /* Color de fondo azul */
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 50%; /* Botón circular */
+    border-radius: 50%;
     width: 60px;
     height: 60px;
     font-size: 30px;
@@ -24,3 +26,37 @@
     bottom: 20px;
     right: 20px;
   }
+  
+  /* Contenedor de las tarjetas */
+  .notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  /* Tarjeta individual */
+  .note-card {
+    background-color: #4CAF50; /* Fondo verde */
+    color: white;
+    padding: 15px;
+    width: 200px; /* Ancho fijo para que sean cuadros */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+  }
+  
+  .note-card:hover {
+    transform: scale(1.05); /* Efecto de hover */
+  }
+  
+  .note-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .note-card p {
+    margin-top: 8px;
+    font-size: 0.9em;
+  }
+  

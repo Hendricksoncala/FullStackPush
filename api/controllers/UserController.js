@@ -1,6 +1,9 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs'); // Asegúrate de que bcryptjs esté instalado
+const bcrypt = require('bcryptjs'); 
+// const bcryptjs = require('bcryptjs');
+// import bcrypt from 'bcryptjs';
+
 
 // Generar token
 const generateToken = (id) => {
@@ -23,9 +26,10 @@ exports.registerUser = async (req, res) => {
     const user = new User({ username, password: hashedPassword });
     await user.save();
 
-    res.status(201).json({ token: generateToken(user._id) });
+    return res.status(201).json({"message": "User registered successfully"});
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
+    
   }
 };
 
@@ -35,12 +39,18 @@ exports.loginUser = async (req, res) => {
 
   try {
     const user = await User.findOne({ username });
-    if (user && (await bcrypt.compare(password, user.password))) {
-      res.json({ token: generateToken(user._id) });
+    console.log(user)
+    
+    const validate = await bcrypt
+    console.log(validate);
+
+    if (user && (validate)) {
+      return res.json({ token: generateToken(user._id) });
+      // return res.status(200).header('auth-token', token).json(user);
     } else {
-      res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).json({ message: 'Invalid username or password' });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };

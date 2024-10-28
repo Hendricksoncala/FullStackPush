@@ -48,7 +48,10 @@ function NotesPage() {
       <h1>Notes</h1>
       <ul>
         {notes.map((note) => (
-          <li key={note._id}>{note.title} - {note.content}</li>
+        <div key={note._id} className="note-card">
+          <h3>{note.title}</h3>
+          <p>{note.content}</p>
+        </div>
         ))}
       </ul>
       <button className="create-note-button" onClick={handleCreateNote}>
