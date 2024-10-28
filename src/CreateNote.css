@@ -28,14 +28,15 @@
 
 /* Estilos para el título */
 .title-input {
-  font-size: 32px;
+  font-size: 60px;
   font-weight: bold;
   color: #d1d1d1;
   background: none;
   border: none;
-  width: 100%;
+  width: 100vw;
   margin: 16px 0;
   outline: none;
+  
 }
 
 /* Estilos para el área de contenido */

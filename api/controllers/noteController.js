@@ -28,13 +28,11 @@ exports.getNotes = async (req, res) => {
 // Obtener una nota por ID
 exports.getNoteById = async (req, res) => {
   try {
-    console.log("req.user:", req.user); // Verificar que req.user existe
-    console.log("req.params.id:", req.params.id); // Verificar el id de la nota
-
     const nota = await Note.findById(req.params.id);
     if (!nota) {
       return res.status(404).json({ message: 'Nota no encontrada' });
     }
+    // Verificar si la nota pertenece al usuario autenticado
     if (nota.usuario.toString() !== req.user.id) {
       return res.status(403).json({ message: 'No tienes permiso para acceder a esta nota' });
     }
@@ -47,17 +45,22 @@ exports.getNoteById = async (req, res) => {
 // Actualizar una nota por ID
 exports.updateNote = async (req, res) => {
   try {
+    const { title, content } = req.body;
     const nota = await Note.findById(req.params.id);
+
     if (!nota) {
       return res.status(404).json({ message: 'Nota no encontrada' });
     }
-    // Verificar si la nota pertenece al usuario autenticado
     if (nota.usuario.toString() !== req.user.id) {
-      return res.status(403).json({ message: 'No tienes permiso para actualizar esta nota' });
+      return res.status(403).json({ message: 'No tienes permiso para editar esta nota' });
     }
-    nota.contenido = req.body.contenido || nota.contenido; // Actualizar solo si se proporciona nuevo contenido
-    const notaActualizada = await nota.save();
-    res.json(notaActualizada);
+
+    // Actualiza los campos
+    nota.title = title || nota.title;
+    nota.content = content || nota.content;
+
+    const updatedNote = await nota.save();
+    res.json(updatedNote);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
