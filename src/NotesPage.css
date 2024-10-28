@@ -36,11 +36,11 @@
   
   /* Tarjeta individual */
   .note-card {
-    background-color: #4CAF50; /* Fondo verde */
+    background-color: #c490c9; /* Fondo verde */
     color: white;
     padding: 15px;
     width: 90vw; /* Ancho fijo para que sean cuadros */
-    margin:25px;
+    margin:2px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;

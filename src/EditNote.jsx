@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import flecha from "./assets/flecha.png"
+import ojo from "./assets/visibility.png"
+import save from "./assets/save.png"
+import './EditNote.css';
+
+
 
 function EditNote() {
   const { id } = useParams(); // Obtener el ID de la nota desde la URL
@@ -66,26 +72,38 @@ function EditNote() {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // si usas autenticación basada en token
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      const data = await response.json();
-      if (response.ok) {
-        alert(data.message); // Notificación de éxito
-        // Aquí podrías actualizar el estado o recargar las notas
-      } else {
-        alert(data.message); // Mensaje de error
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        return alert(errorData.message || 'Error al eliminar la nota');
       }
+      
+      const data = await response.json();
+      alert(data.message); // Notificación de éxito
+      // Aquí podrías actualizar el estado o recargar las notas
     } catch (error) {
-      console.error(error);
+      console.error("Error en handleDelete:", error);
     }
   };
   return (
     <div className="create-note-page">
       <div className="nav-buttons">
-        <button onClick={() => navigate('/notes')}>Volver</button>
+        <button onClick={() => navigate('/notes')} className="nav-button">
+          <img src={flecha} alt="Volver" />
+        </button>
+        <div className="right-buttons">
+          <button>
+            <img src={ojo} />
+          </button>
+          <button onClick={handleUpdate} className="nav-button">
+            <img src={save} />
+          </button>
+        </div>
       </div>
-      <input
+      <textarea
         className="title-input"
         type="text"
         name="title"
@@ -100,8 +118,10 @@ function EditNote() {
         onChange={handleInputChange}
         placeholder="Contenido"
       ></textarea>
-      <button className="save-button" onClick={handleUpdate}>Guardar Cambios</button>
-      <button onClick={handleDelete} style={{ backgroundColor: 'red' }}>Eliminar Nota</button>
+      {/* <button className="save-button" onClick={handleUpdate}>Guardar Cambios</button> */}
+      <button onClick={() => { console.log("Botón de eliminar clickeado"); handleDelete(note._id); }} style={{ backgroundColor: 'red' }}>
+        Eliminar Nota
+      </button>
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CreateNote.css';
+import flecha from "./assets/flecha.png";
+import ojo from "./assets/visibility.png";
+import save from "./assets/save.png";
 
 function CreateNote() {
   const [title, setTitle] = useState('');
@@ -34,24 +37,31 @@ function CreateNote() {
   return (
     <div className="create-note-page">
       <div className="nav-buttons">
-        <button onClick={() => navigate('/notes')}>←</button>
-        <button>👁️</button>
-        <button>📷</button>
+        <button onClick={() => navigate('/notes')} className="nav-button">
+          <img src={flecha} alt="Volver" />
+        </button>
+        <div className="right-buttons">
+          <button>
+            <img src={ojo} alt="Previsualizar" />
+          </button>
+          <button onClick={handleSave} className="nav-button">
+            <img src={save} alt="Guardar" />
+          </button>
+        </div>
       </div>
-      <input
+      <textarea
         className="title-input"
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
+        placeholder="Título"
       />
       <textarea
         className="content-textarea"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder="Type something..."
+        placeholder="Contenido"
       />
-      <button onClick={handleSave} className="save-button">✔️</button>
     </div>
   );
 }

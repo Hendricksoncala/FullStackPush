@@ -10,6 +10,29 @@
     color: #d1d1d1;
   }
   
+
+  .buttons{
+    display: flex;
+    flex-direction:row;
+    
+  }
+  .nav-buttons {
+    display: flex;
+
+    width: 100%; /* Ajusta el contenedor de los botones al ancho del componente */
+  }
+  .nav-buttons img{
+    display: flex;
+    align-items: flex-start;
+  }
+
+  
+  .right-buttons {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones de la derecha */
+  }
+
+
   /* Botones de navegación */
   .nav-buttons {
     display: flex;
@@ -29,13 +52,14 @@
   /* Estilos para el título */
   .title-input {
     font-size: 60px;
-    font-weight: bold;
+    width: 100%;
     color: #d1d1d1;
     background: none;
     border: none;
-    width: 100vw;
+
     margin: 16px 0;
     outline: none;
+    font-size: 50px;
   }
   
   /* Estilos para el área de contenido */

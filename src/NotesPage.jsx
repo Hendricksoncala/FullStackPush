@@ -43,10 +43,18 @@ function NotesPage() {
   const handleNoteClick = (id) => {
     navigate(`/notes/${id}`);
   };
+
+
+
 //ESTAS SON LAS CARTAS PEQUENAS QUE SE VEN EN LA PAGINA PRINCIPAL
   return (
     <div className="notes-page">
-      <h1>Notes</h1>
+      <div className="header">
+        
+        <h1>Notes</h1>
+        
+      </div>
+
       <div className="notes-container">
         {notes.map((note) => (
           <div
