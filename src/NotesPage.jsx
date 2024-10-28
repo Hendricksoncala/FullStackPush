@@ -40,10 +40,14 @@ function NotesPage() {
     navigate('/create-note');
   };
 
+  const handleNoteClick = (id) => {
+    navigate(`/notes/${id}`);
+  };
+
   return (
     <div className="notes-page">
       <h1>Notes</h1>
-      <ul>
+      <div className="notes-container">
         {notes.map((note) => (
           <div
             key={note._id}
@@ -51,10 +55,10 @@ function NotesPage() {
             onClick={() => navigate(`/notes/${note._id}`)} // Navega a la ruta de detalle de la nota
           >
             <h3>{note.title}</h3>
-            {/* <p>{note.content}</p> */}
+            <p>{note.content}</p>
           </div>
         ))}
-      </ul>
+      </div>
       <button className="create-note-button" onClick={handleCreateNote}>
         +
       </button>

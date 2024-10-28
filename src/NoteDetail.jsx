@@ -1,55 +1,72 @@
-// NoteDetail.js
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function NoteDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [note, setNote] = useState(null);
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    const fetchNote = async () => {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/notes/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setNote(data);
-        setTitle(data.title);
-        setContent(data.content);
-      } else {
-        console.error('Error al cargar la nota');
+    // Obtener la nota por ID al cargar el componente
+    fetch(`http://localhost:5000/notes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
       }
-    };
-    fetchNote();
+    })
+      .then(response => response.json())
+      .then(data => setNote(data))
+      .catch(error => console.error(error));
   }, [id]);
 
-  const handleUpdate = async () => {
-    const token = localStorage.getItem('token');
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = async () => {
+    // Actualizar la nota en la base de datos
     await fetch(`http://localhost:5000/notes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${localStorage.getItem('token')}`
       },
-      body: JSON.stringify({ title, content })
+      body: JSON.stringify({ title: note.title, content: note.content })
     });
-    navigate('/');
+    setIsEditing(false);
   };
 
-  if (!note) return <div>Loading...</div>;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNote({ ...note, [name]: value });
+  };
 
   return (
-    <div className="note-detail">
-      <button onClick={() => navigate('/')}>⬅️ Back</button>
-      <h2>{title}</h2>
-      <textarea value={content} onChange={(e) => setContent(e.target.value)} />
-      <button onClick={handleUpdate}>Save Changes</button>
-    </div>
+    note && (
+      <div className="note-detail">
+        <input
+          type="text"
+          name="title"
+          value={note.title}
+          onChange={handleChange}
+          disabled={!isEditing}
+          className="note-title"
+        />
+        <textarea
+          name="content"
+          value={note.content}
+          onChange={handleChange}
+          disabled={!isEditing}
+          className="note-content"
+        />
+        {isEditing ? (
+          <button onClick={handleSaveClick}>Guardar</button>
+        ) : (
+          <button onClick={handleEditClick}>Editar</button>
+        )}
+        <button onClick={() => navigate('/notes')}>Volver</button>
+      </div>
+    )
   );
 }
 
