@@ -16,7 +16,7 @@
   
   /* Botón de crear nota */
   .create-note-button {
-    background-color: #007bff;
+    background-color: hsl(24, 100%, 50%);
     color: white;
     border: none;
     border-radius: 50%;
@@ -38,37 +38,53 @@
   }
   
   /* Tarjeta individual */
+
   .note-card {
-    background-color: #c490c9; /* Fondo verde */
-    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribuye el título y el botón de basura en los extremos */
     padding: 15px;
-    width: 90vw; /* Ancho fijo para que sean cuadros */
-    margin:2px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s;
+    border-radius: 8px;
+    margin: 10px auto; /* Centra la tarjeta horizontalmente */
+    width: 90vw; /* Ocupa el 90% del ancho del contenedor */
+    background-color: #ffe6e6; /* Color pastel suave */
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para un efecto flotante */
   }
   
-  .note-card:hover {
-    transform: scale(1.05); /* Efecto de hover */
+  .note-title {
+    flex: 1; /* Permite que el título ocupe el espacio restante */
+    cursor: pointer;
   }
   
-  .note-card h3 {
-    margin: 0;
+  .delete-button {
+    background: none;
+    border: none;
+    color: #ff4d4d; /* Rojo pastel para el botón */
     font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
+    width: 6vw;
+    display: flex;
+    justify-content: flex-end;
   }
   
-  .note-card p {
-    margin-top: 8px;
-    font-size: 0.9em;
+  .delete-button:hover {
+    color: #ff1a1a; /* Tono de rojo más oscuro al pasar el mouse */
   }
-  
+
+
+  /*VA HASTA AQUIII*/
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 10px 0;
+  }
+  .header button{
+    width: 7vw;
   }
 
   .title {

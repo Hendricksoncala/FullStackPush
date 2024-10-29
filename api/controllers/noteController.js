@@ -74,19 +74,25 @@ exports.updateNote = async (req, res) => {
 };
 
 // Eliminar una nota por ID
+// noteController.js
 exports.deleteNote = async (req, res) => {
   try {
-    const nota = await Note.findById(req.params.id);
-    if (!nota) {
+    const note = await Note.findById(req.params.id);
+
+    // Verificar si la nota existe
+    if (!note) {
       return res.status(404).json({ message: 'Nota no encontrada' });
     }
-    // Verificar si la nota pertenece al usuario autenticado
-    if (nota.user.toString() !== req.user.id) {
+
+    // Verificar si la nota tiene un usuario y si pertenece al usuario autenticado
+    if (!note.user || note.user.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: 'No tienes permiso para eliminar esta nota' });
     }
-    await nota.remove();
-    res.json({ message: 'Nota eliminada' });
+
+    await Note.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Nota eliminada exitosamente' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Error en el controlador deleteNote:', error);
+    res.status(500).json({ message: 'Error al eliminar la nota' });
   }
 };

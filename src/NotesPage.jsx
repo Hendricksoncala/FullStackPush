@@ -105,16 +105,16 @@ function NotesPage() {
           <p>Create your first note!</p>
         </div>
       )}
-      <ul>
-        {(searchQuery ? filteredNotes : notes).map((note) => (
-          <div key={note._id} className="note-card">
-            <h3 onClick={() => handleNoteClick(note._id)}>{note.title}</h3>
-            <button onClick={() => handleDeleteNote(note._id)} className="delete-button">
-              🗑️
-            </button>
-          </div>
-        ))}
-      </ul>
+        <ul>
+          {(searchQuery ? filteredNotes : notes).map((note) => (
+            <div key={note._id} className="note-card">
+              <h3 onClick={() => handleNoteClick(note._id)} className="note-title">{note.title}</h3>
+              <button onClick={() => handleDeleteNote(note._id)} className="delete-button">
+                🗑️
+              </button>
+            </div>
+          ))}
+        </ul>
       <button className="create-note-button" onClick={handleCreateNote}>+</button>
     </div>
   );
