@@ -1,6 +1,4 @@
-¡Perfecto! Aquí tienes una guía para el archivo README que incluye instrucciones de instalación, configuración y ejecución para que cualquier persona pueda ejecutar tu proyecto localmente. 
 
----
 
 # Proyecto de Notas
 
